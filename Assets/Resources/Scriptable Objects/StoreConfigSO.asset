@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c67f7c051fd13b04c9d9bd2ede07d5f9, type: 3}
+  m_Name: StoreConfigSO
+  m_EditorClassIdentifier: 
+  CatSkins:
+  - Name: Skin
+    Icon: {fileID: 7482667652216324306, guid: 63fa0ed823bc9d5409b49159ecb6ccbd, type: 3}
+    Price: 100
+    PremiumPrice: 0
+  - Name: Skin1
+    Icon: {fileID: 7482667652216324306, guid: ae878bbf94773664ab956c4dd70ee2cf, type: 3}
+    Price: 100
+    PremiumPrice: 0
+  - Name: Skin2
+    Icon: {fileID: 7482667652216324306, guid: ad5bf934dfb6a1448a7cbee22d9f2deb, type: 3}
+    Price: 100
+    PremiumPrice: 0
+  - Name: Skin3
+    Icon: {fileID: 7482667652216324306, guid: dab26e9dfd02f354bace4e692879907a, type: 3}
+    Price: 100
+    PremiumPrice: 0
+  - Name: Skin4
+    Icon: {fileID: 7482667652216324306, guid: d3ed669254950a049869749d87a4e922, type: 3}
+    Price: 100
+    PremiumPrice: 0
+  - Name: Skin5
+    Icon: {fileID: 7482667652216324306, guid: 8e69ab991f6b2624f8d561512b14868f, type: 3}
+    Price: 100
+    PremiumPrice: 0
+  - Name: Skin6
+    Icon: {fileID: 7482667652216324306, guid: 5fc4616bb77bef244ab012bd445ce813, type: 3}
+    Price: 100
+    PremiumPrice: 0
+  - Name: Skin7
+    Icon: {fileID: 7482667652216324306, guid: ba28af06f4b6182499c586627e13c34b, type: 3}
+    Price: 100
+    PremiumPrice: 0
+  - Name: Skin8
+    Icon: {fileID: 7482667652216324306, guid: deaa8467d47f72242b3116a67ee0ea4b, type: 3}
+    Price: 100
+    PremiumPrice: 0
