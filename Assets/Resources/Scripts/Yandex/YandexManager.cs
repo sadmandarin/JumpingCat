@@ -1,12 +1,14 @@
 using Agava.YandexGames;
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class YandexManager : MonoBehaviour
 {
     public static YandexManager Instance;
+
+    private float _adCooldown = 60;
+    private float _lastAdTime = -Mathf.Infinity; 
 
     private void Awake()
     {
@@ -71,7 +73,46 @@ public class YandexManager : MonoBehaviour
 
     public void ShowRewardedAd(Action OnRewardGranted)
     {
-        
+        VideoAd.Show(
+            onOpenCallback: () => Debug.Log("Реклама открыта"),
+            onRewardedCallback: () =>
+            {
+                Debug.Log("Награда получена");
+                OnRewardGranted?.Invoke();
+            },
+            onCloseCallback: () => Debug.Log("Реклама закрыта"),
+            onErrorCallback: (error) =>
+            {
+                Debug.Log($"Ошибка при вызове рекламы: {error}");
+            }
+            );
+    }
+
+    public void ShowRewardAtTime()
+    {
+        if (Time.time - _lastAdTime < _adCooldown)
+            return;
+
+        InterstitialAd.Show(
+            onOpenCallback: () => Debug.Log("Реклама открыта"),
+            onCloseCallback: (wasShown) =>
+            {
+                Debug.Log($"Реклама была показана {wasShown}");
+                _lastAdTime = Time.time;
+            },
+            onErrorCallback: (errorMessage) =>
+            {
+                Debug.LogError($"Ошибка при показе полноэкранной рекламы: {errorMessage}");
+            },
+            onOfflineCallback: () =>
+            {
+                Debug.LogWarning("Полноэкранная реклама недоступна в офлайн-режиме.");
+            });
+    }
+
+    public void TryShowAd()
+    {
+
     }
 }
 

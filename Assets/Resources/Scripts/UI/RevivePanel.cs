@@ -25,8 +25,11 @@ public class RevivePanel : MonoBehaviour
 
     private void Revive()
     {
-        GlobalGameManager.Instance.Revive();
-        Destroy(gameObject);
+        YandexManager.Instance.ShowRewardedAd(() =>
+        {
+            GlobalGameManager.Instance.Revive();
+            Destroy(gameObject);
+        });
     }
 
     private IEnumerator ReviveTimer()
