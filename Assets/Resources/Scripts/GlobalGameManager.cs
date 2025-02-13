@@ -50,14 +50,14 @@ public class GlobalGameManager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        YandexManager.Instance.LoadData((loadedData) =>
-        {
-            if (loadedData != null) 
-                PlayerData = new PlayerData(loadedData.MaxScore, loadedData.Money, loadedData.CurrentSkin, loadedData.BuyedSkins);
+        //YandexManager.Instance.LoadData((loadedData) =>
+        //{
+        //    if (loadedData != null) 
+        //        PlayerData = new PlayerData(loadedData.MaxScore, loadedData.Money, loadedData.CurrentSkin, loadedData.BuyedSkins);
             
-            else
-                PlayerData = new PlayerData();
-        });
+        //    else
+        //        PlayerData = new PlayerData();
+        //});
 
         PlayerData = new PlayerData();
     }

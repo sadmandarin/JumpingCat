@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CatSkins:
   - Name: Skin
-    Icon: {fileID: 7482667652216324306, guid: 63fa0ed823bc9d5409b49159ecb6ccbd, type: 3}
+    Icon: {fileID: -9145370288165968992, guid: 80d2f8230265ea4409d982802be0a315, type: 3}
     Price: 100
     PremiumPrice: 0
   - Name: Skin1

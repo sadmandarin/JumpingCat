@@ -54,6 +54,7 @@ public class YandexManager : MonoBehaviour
 
     }
 
+
     public void LoadData(Action<SaveData> OnLoadedData)
     {
         PlayerAccount.GetCloudSaveData((data) =>
@@ -110,9 +111,39 @@ public class YandexManager : MonoBehaviour
             });
     }
 
-    public void TryShowAd()
+    public void SubmitScore(string leaderBoardName, int score)
     {
+        if (!YandexGamesSdk.IsInitialized)
+            return;
 
+        Leaderboard.SetScore(leaderBoardName, score);
+    }
+
+    public void GetLeaderboardScore(string leaderBoardname, Action<List<LeaderboardEntry>> onLeaderboardLoaded)
+    {
+        if (!YandexGamesSdk.IsInitialized)
+            return;
+
+        Leaderboard.GetEntries(leaderBoardname,
+            onSuccessCallback: (entriesResponse) =>
+            {
+                List<LeaderboardEntry> entries = new();
+
+                foreach (var entry in entriesResponse.entries)
+                {
+                    entries.Add(new LeaderboardEntry
+                    {
+                        Rank = entry.rank,
+                        Name = entry.player.publicName,
+                        Score = entry.score,
+                    });
+                }
+                onLeaderboardLoaded?.Invoke(entries);
+            },
+            onErrorCallback: (error) =>
+            {
+                Debug.Log($"Ошибка получения либерборда {error}");
+            });
     }
 }
 
@@ -124,3 +155,12 @@ public class SaveData
     public CatSkinItem CurrentSkin;
     public List<CatSkinItem> BuyedSkins;
 }
+
+[System.Serializable]
+public class LeaderboardEntry
+{
+    public int Rank;
+    public string Name;
+    public int Score;
+}
+
