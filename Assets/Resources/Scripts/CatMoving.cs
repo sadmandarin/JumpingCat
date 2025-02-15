@@ -13,6 +13,8 @@ public class CatMoving : MonoBehaviour
     private bool _firstDead;
     private bool _isImmortal = false;
     private bool _gameStarted;
+    private Camera mainCamera; 
+    private float screenHalfWidth;
 
     private void OnEnable()
     {
@@ -22,6 +24,9 @@ public class CatMoving : MonoBehaviour
 
     private void Start()
     {
+        mainCamera = Camera.main;
+        screenHalfWidth = mainCamera.orthographicSize * mainCamera.aspect;
+
         _rb = GetComponent<Rigidbody2D>();
         _startPos = transform.position.y;
         _firstDead = true;
@@ -63,6 +68,22 @@ public class CatMoving : MonoBehaviour
                 collision.gameObject.GetComponent<PlatformBase>().OnJump();
             }
         }
+    }
+
+    private void Update()
+    {
+        Vector3 position = transform.position;
+
+        if (position.x < -screenHalfWidth)
+        {
+            position.x = screenHalfWidth;
+        }
+        else if (position.x > screenHalfWidth)
+        {
+            position.x = -screenHalfWidth;
+        }
+
+        transform.position = position;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -121,5 +142,11 @@ public class CatMoving : MonoBehaviour
     {
         var horizontalInput = Input.GetAxis("Horizontal");
         _rb.linearVelocity = new Vector2(horizontalInput * _horizontalMove, _rb.linearVelocity.y);
+        Flip(_rb.linearVelocity.x > 0 ? 1 : -1);
+    }
+
+    private void Flip(int sign)
+    {
+        transform.localScale = new Vector3(-0.2f * sign, transform.localScale.y, transform.localScale.z);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.Video;
 public class PlatformSpawner : MonoBehaviour
 {
     [SerializeField] private float _spawnHeight; 
-    [SerializeField] private float _minX = -2f, _maxX = 2f; 
+    [SerializeField] private float _minX = -4.5f, _maxX = 4.5f; 
     [SerializeField] private float _minYDistance, _maxYDistance;
     [SerializeField] private MoneyItem _moneyPrefab;
 
@@ -23,7 +23,7 @@ public class PlatformSpawner : MonoBehaviour
 
     void Update()
     {
-        if (Camera.main.transform.position.y + 6 > lastPlatformY)
+        if (Camera.main.transform.position.y + 10 > lastPlatformY)
         {
             SpawnPlatform();
         }

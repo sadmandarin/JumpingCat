@@ -1,5 +1,6 @@
 using Agava.YandexGames;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,12 +21,12 @@ public class YandexManager : MonoBehaviour
         else
             Destroy(gameObject);
         
-        InitializeSdk();
+        StartCoroutine(InitializeSdk());
     }
 
-    private void InitializeSdk()
+    private IEnumerator InitializeSdk()
     {
-        YandexGamesSdk.Initialize(() =>
+        yield return YandexGamesSdk.Initialize(() =>
         {
             Debug.Log("YandexSDK initialized");
             CheckAutorization();
